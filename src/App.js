@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './screens/Home';
+import Topics from './screens/Topics';
+import DefaultLayout from './layout/DefaultLayout'
+import Register from './screens/Register'
+import Login from './screens/Login'
+import ModalScr from './screens/ModalScr';
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <BrowserRouter>
+        <Routes>
+          <Route exact path="/register" name="Register Page" element={<Register />} />
+          <Route exact path="/login" name="Login Page" element={<Login />} />
 
-export default App;
+          <Route path="/" name="defaultLayout" element={<DefaultLayout />} >
+            <Route path='/home' element={<Home />} />
+            <Route path='/topics' element={<Topics/>} />
+            <Route path="/modal" element={<ModalScr />} />
+          </Route>
+
+
+        </Routes>
+    </BrowserRouter>
+  )
+}
+export default App
